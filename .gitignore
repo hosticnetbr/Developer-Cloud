@@ -1,0 +1,24 @@
+# Logs
+logs/
+*.log
+
+# Environment
+.env
+.env.*
+
+# Node
+node_modules/
+
+# Docker
+data/
+
+# VS Code
+.vscode/
+
+# Temporary
+tmp/
+temp/
+
+# Linux
+*.swp
+.DS_Store

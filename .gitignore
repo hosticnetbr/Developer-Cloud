@@ -22,3 +22,11 @@ temp/
 # Linux
 *.swp
 .DS_Store
+
+# Environment
+
+.env
+
+*.env
+
+!.env.example

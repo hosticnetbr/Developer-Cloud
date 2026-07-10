@@ -6,4 +6,4 @@ SERVICE="$1"
 
 source "$HOME/Developer-Cloud/services/core/docker.sh"
 
-compose "$SERVICE" logs -f
+compose "$SERVICE" down

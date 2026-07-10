@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+ROOT="$HOME/Developer-Cloud"
+
+source "$ROOT/scripts/common/init.sh"
+
+COMMAND="${1:-help}"
+
+case "$COMMAND" in
+
+    help)
+
+        echo ""
+        echo "Developer Cloud Platform"
+        echo ""
+        echo "Comandos:"
+        echo ""
+        echo "  dc install <service>"
+        echo "  dc start <service>"
+        echo "  dc stop <service>"
+        echo "  dc restart <service>"
+        echo "  dc logs <service>"
+        echo "  dc ps"
+        echo "  dc doctor"
+        echo "  dc backup"
+        echo "  dc update"
+        echo ""
+        ;;
+
+    install)
+
+        bash "$ROOT/scripts/install/$2.sh"
+        ;;
+
+    start)
+
+        bash "$ROOT/scripts/services/$2.sh"
+        ;;
+
+    doctor)
+
+        bash "$ROOT/doctor.sh"
+        ;;
+
+    backup)
+
+        bash "$ROOT/backup.sh"
+        ;;
+
+    update)
+
+        bash "$ROOT/update.sh"
+        ;;
+
+    *)
+
+        echo "Comando desconhecido."
+        ;;
+
+esac

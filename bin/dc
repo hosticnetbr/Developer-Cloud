@@ -1,5 +1,65 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-exec "$HOME/Developer-Cloud/scripts/core/dispatcher.sh" "$@"
+source "$ROOT/scripts/common/init.sh"
+
+COMMAND="$1"
+shift || true
+
+case "$COMMAND" in
+
+    doctor)
+        bash "$ROOT/scripts/maintenance/doctor.sh" "$@"
+        ;;
+
+    update)
+        bash "$ROOT/scripts/maintenance/update.sh" "$@"
+        ;;
+
+    backup)
+        bash "$ROOT/scripts/maintenance/backup.sh" "$@"
+        ;;
+
+    cleanup)
+        bash "$ROOT/scripts/maintenance/cleanup.sh" "$@"
+        ;;
+
+    install)
+        bash "$ROOT/scripts/install/install.sh" "$@"
+        ;;
+
+    configure)
+        bash "$ROOT/scripts/configure/configure.sh" "$@"
+        ;;
+
+    service)
+        bash "$ROOT/scripts/services/service.sh" "$@"
+        ;;
+
+    expose)
+        bash "$ROOT/scripts/traefik/expose.sh" "$@"
+        ;;
+
+    logs)
+        bash "$ROOT/scripts/docker/logs.sh" "$@"
+        ;;
+
+    *)
+        echo ""
+        echo "Developer Cloud"
+        echo ""
+        echo "Comandos:"
+        echo ""
+        echo "dc doctor"
+        echo "dc update"
+        echo "dc backup"
+        echo "dc cleanup"
+        echo "dc install"
+        echo "dc configure"
+        echo "dc service"
+        echo "dc expose"
+        echo "dc logs"
+        echo ""
+        ;;
+esac

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker ps
+docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"

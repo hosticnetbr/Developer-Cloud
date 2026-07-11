@@ -1,10 +1,14 @@
-
-
 #!/usr/bin/env bash
 
 set -euo pipefail
 
-SERVICE="$1"
+SERVICE="${1:-}"
+
+if [[ -z "$SERVICE" ]]; then
+    echo "Uso:"
+    echo "dc up <servico>"
+    exit 1
+fi
 
 source "$HOME/Developer-Cloud/services/core/docker.sh"
 

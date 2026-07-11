@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+COMMAND="$1"
+shift
+
+case "$COMMAND" in
+    create)
+        "$SCRIPT_DIR/scripts/commands/create.sh" "$@"
+        ;;
+    help)
+        "$SCRIPT_DIR/scripts/commands/help.sh"
+        ;;
+    version)
+        "$SCRIPT_DIR/scripts/commands/version.sh"
+        ;;
+    *)
+        echo "Developer Cloud CLI"
+        echo
+        echo "Uso:"
+        echo "  dc <comando>"
+        echo
+        echo "Comandos disponíveis:"
+        echo "  create"
+        echo "  help"
+        echo "  version"
+        exit 1
+        ;;
+esac

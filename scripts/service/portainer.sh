@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-source "$(dirname "$0")/../common/init.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/../common/init.sh"
 
 dcp_title "Portainer"
 

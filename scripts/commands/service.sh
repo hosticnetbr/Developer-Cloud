@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
-exec "$SCRIPT_DIR/../modules/service/manager.sh" "$@"
+exec "$ROOT/scripts/service/manager.sh" "$@"

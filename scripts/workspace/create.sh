@@ -2,35 +2,29 @@
 
 set -e
 
-CONFIG="$HOME/.developer-cloud/config"
+PROJECT="${1:-}"
 
-if [ ! -f "$CONFIG" ]; then
-    echo "[ERROR] Developer Cloud não configurado."
-    exit 1
-fi
-
-source "$CONFIG"
-
-PROJECT_NAME="$1"
-
-if [ -z "$PROJECT_NAME" ]; then
+if [[ -z "$PROJECT" ]]; then
+    echo "[ERROR] Informe o nome do projeto."
+    echo
     echo "Uso:"
-    echo "dc create <nome-do-projeto>"
+    echo "    dc create <nome>"
     exit 1
 fi
 
-PROJECT_DIR="$WORKSPACE/$PROJECT_NAME"
+ROOT="$HOME/Developer-Cloud"
+WORKSPACE="$HOME/workspace"
 
-if [ -d "$PROJECT_DIR" ]; then
-    echo "[ERROR] Projeto '$PROJECT_NAME' já existe."
+if [[ -d "$WORKSPACE/$PROJECT" ]]; then
+    echo "[ERROR] Projeto '$PROJECT' já existe."
     exit 1
 fi
 
 echo "[INFO] Criando projeto..."
 
-cp -R "$TEMPLATES" "$PROJECT_DIR"
+bash "$ROOT/scripts/generator/generator.sh" "$PROJECT"
 
-cp "$PROJECT_DIR/.env.example" "$PROJECT_DIR/.env"
-
+echo
 echo "[OK] Projeto criado em:"
-echo "$PROJECT_DIR"
+echo "$WORKSPACE/$PROJECT"
+echo

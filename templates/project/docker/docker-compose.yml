@@ -1,1 +1,19 @@
 services:
+
+  app:
+
+    image: nginx:alpine
+
+    container_name: {{PROJECT}}
+
+    restart: unless-stopped
+
+    networks:
+
+      - developer-cloud
+
+networks:
+
+  developer-cloud:
+
+    external: true

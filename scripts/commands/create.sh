@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+set -e
 
-"$SCRIPT_DIR/../workspace/create.sh" "$@"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+
+exec "$ROOT/scripts/generator/generator.sh" "$@"

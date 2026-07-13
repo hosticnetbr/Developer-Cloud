@@ -16,6 +16,8 @@ dc version
 dc doctor
 dc update
 dc backup
+dc project status <projeto>    Exibe o status completo do projeto
+dc expose <projeto>        Publica um projeto no Traefik
 
 Containers
 ----------

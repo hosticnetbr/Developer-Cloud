@@ -4,13 +4,12 @@ generate_manifest() {
 
     local PROJECT="$1"
 
-    cat > "$HOME/workspace/$PROJECT/.developer-cloud.json" <<EOF
-{
-  "name": "$PROJECT",
-  "domain": "$PROJECT.dev.hostic.net.br",
-  "version": "1.0",
-  "created_at": "$(date -Iseconds)"
-}
-EOF
+    local FILE="$HOME/workspace/$PROJECT/.developer-cloud.json"
+
+    sed \
+        -e "s/{{PROJECT}}/$PROJECT/g" \
+        -e "s/{{DATE}}/$(date --iso-8601=seconds)/g" \
+        "$HOME/Developer-Cloud/templates/project/.developer-cloud.json" \
+        > "$FILE"
 
 }

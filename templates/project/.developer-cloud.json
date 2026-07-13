@@ -1,0 +1,23 @@
+{
+  "name": "{{PROJECT}}",
+  "domain": "{{PROJECT}}.dev.hostic.net.br",
+
+  "stack": {
+    "frontend": "",
+    "backend": "",
+    "database": ""
+  },
+
+  "services": {
+    "traefik": true,
+    "redis": false,
+    "mailpit": false,
+    "minio": false,
+    "supabase": false,
+    "evolution": false,
+    "n8n": false
+  },
+
+  "version": "1.1",
+  "created_at": "{{DATE}}"
+}

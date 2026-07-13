@@ -46,6 +46,10 @@ info)
     exec "$SCRIPT_DIR/info.sh" "$PROJECT"
     ;;
 
+status)
+    exec "$SCRIPT_DIR/status.sh" "$PROJECT"
+    ;;
+
 *)
     echo
     echo "Ação inválida."

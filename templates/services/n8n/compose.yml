@@ -1,0 +1,8 @@
+image: n8nio/n8n
+
+container_name: {{PROJECT}}-n8n
+
+restart: unless-stopped
+
+networks:
+  - developer-cloud

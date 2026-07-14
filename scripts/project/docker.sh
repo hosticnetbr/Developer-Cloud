@@ -35,10 +35,11 @@ run_compose() {
         exit 1
     fi
 
-    cd "$PATH_PROJECT/docker"
-
     docker compose \
-        --env-file ../.env \
+        -p "$PROJECT" \
+        --project-directory "$PATH_PROJECT" \
+        -f "$PATH_PROJECT/docker/docker-compose.yml" \
+        --env-file "$PATH_PROJECT/.env" \
         "$@"
 
 }

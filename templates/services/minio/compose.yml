@@ -1,0 +1,10 @@
+image: minio/minio
+
+command: server /data
+
+container_name: {{PROJECT}}-minio
+
+restart: unless-stopped
+
+networks:
+  - developer-cloud

@@ -1,0 +1,8 @@
+image: axllent/mailpit
+
+container_name: {{PROJECT}}-mailpit
+
+restart: unless-stopped
+
+networks:
+  - developer-cloud

@@ -1,0 +1,8 @@
+image: evoapicloud/evolution-api:latest
+
+container_name: {{PROJECT}}-evolution
+
+restart: unless-stopped
+
+networks:
+  - developer-cloud

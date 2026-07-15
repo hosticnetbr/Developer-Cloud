@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
+ROOT="$HOME/Developer-Cloud"
+
+source "$ROOT/scripts/provision/env.sh"
+
 module_env() {
 
-    return 0
+    generate_envs "$@"
 
 }

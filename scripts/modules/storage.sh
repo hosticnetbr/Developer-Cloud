@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
+ROOT="$HOME/Developer-Cloud"
+
+source "$ROOT/scripts/provision/storage.sh"
+
 module_storage() {
 
-    return 0
+    create_storage "$@"
 
 }

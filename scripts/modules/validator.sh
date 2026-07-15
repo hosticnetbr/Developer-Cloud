@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-module_validate() {
+ROOT="$HOME/Developer-Cloud"
 
-    return 0
+source "$ROOT/scripts/provision/validator.sh"
+
+module_validator() {
+
+    validate_compose "$@"
 
 }

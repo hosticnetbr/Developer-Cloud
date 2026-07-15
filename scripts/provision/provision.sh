@@ -2,15 +2,16 @@
 
 set -e
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROVISION_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-source "$SCRIPT_DIR/lib.sh"
-source "$SCRIPT_DIR/services.sh"
-source "$SCRIPT_DIR/templates.sh"
-source "$SCRIPT_DIR/storage.sh"
-source "$SCRIPT_DIR/env.sh"
-source "$SCRIPT_DIR/validator.sh"
-source "$SCRIPT_DIR/start.sh"
+source "$PROVISION_DIR/lib.sh"
+source "$PROVISION_DIR/services.sh"
+source "$PROVISION_DIR/templates.sh"
+source "$PROVISION_DIR/storage.sh"
+source "$PROVISION_DIR/env.sh"
+source "$PROVISION_DIR/validator.sh"
+source "$PROVISION_DIR/start.sh"
+
 
 PROJECT="$1"
 

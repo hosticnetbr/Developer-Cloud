@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
+ROOT="$HOME/Developer-Cloud"
+
+source "$ROOT/scripts/generator/dependencies.sh"
+
 module_dependencies() {
 
-    return 0
+    resolve_dependencies "$@"
 
 }

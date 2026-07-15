@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
 source "$HOME/Developer-Cloud/scripts/modules/compose.sh"
 
 append_service() {
@@ -11,15 +9,15 @@ append_service() {
 
     {
         echo
-        append_module_compose "$PROJECT" "$SERVICE"
+        echo "  ${SERVICE}:"
+        append_module_compose "$PROJECT" "$SERVICE" \
+            | sed 's/^/    /'
     } >> "$COMPOSE"
 
 }
 
 prepare_templates() {
-
     local PROJECT="$1"
-
     COMPOSE="$HOME/workspace/$PROJECT/docker/docker-compose.generated.yml"
 
     cat > "$COMPOSE" <<EOF
@@ -33,13 +31,9 @@ EOF
         evolution \
         n8n
     do
-
         VALUE=$(manifest_value "$PROJECT" "$SERVICE")
-
         [[ "$VALUE" != "true" ]] && continue
-
         append_service "$PROJECT" "$SERVICE"
-
     done
 
     cat >> "$COMPOSE" <<EOF
@@ -51,5 +45,4 @@ EOF
 
     echo
     echo "[OK] docker-compose.generated.yml criado."
-
 }

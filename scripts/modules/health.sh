@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
-ROOT="$HOME/Developer-Cloud"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-source "$ROOT/scripts/health/check.sh"
+source "$SCRIPT_DIR/lib.sh"
 
 module_health() {
 
-    health_check "$@"
+    local MODULE="$1"
+
+    module_has "$MODULE" health.conf || return
+
+    cat "$(module_file "$MODULE" health.conf)"
 
 }

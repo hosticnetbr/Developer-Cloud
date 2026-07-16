@@ -5,13 +5,13 @@ source "$HOME/Developer-Cloud/scripts/modules/compose.sh"
 append_service() {
 
     local PROJECT="$1"
-    local SERVICE="$2"
+    local MODULE="$2"
+
+    module_has_compose "$MODULE" || return
 
     {
         echo
-        echo "  ${SERVICE}:"
-        append_module_compose "$PROJECT" "$SERVICE" \
-            | sed 's/^/    /'
+        append_module_compose "$PROJECT" "$MODULE"
     } >> "$COMPOSE"
 
 }
@@ -24,16 +24,15 @@ prepare_templates() {
 services:
 EOF
 
-    for SERVICE in \
-        redis \
-        mailpit \
-        minio \
-        evolution \
-        n8n
+    for MODULE in "$HOME"/Developer-Cloud/templates/services/*
     do
-        VALUE=$(manifest_value "$PROJECT" "$SERVICE")
+        MODULE=$(basename "$MODULE")
+
+        VALUE=$(manifest_value "$PROJECT" "$MODULE")
+
         [[ "$VALUE" != "true" ]] && continue
-        append_service "$PROJECT" "$SERVICE"
+
+        append_service "$PROJECT" "$MODULE"
     done
 
     cat >> "$COMPOSE" <<EOF

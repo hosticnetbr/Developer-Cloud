@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source "$HOME/Developer-Cloud/scripts/modules/metadata.sh"
+
 generate_envs() {
 
     local PROJECT="$1"
@@ -8,20 +10,18 @@ generate_envs() {
 
     mkdir -p "$ROOT"
 
-    for SERVICE in \
-        redis \
-        minio \
-        evolution \
-        n8n
+    for MODULE_DIR in "$HOME"/Developer-Cloud/templates/services/*
     do
-
-        VALUE=$(manifest_value "$PROJECT" "$SERVICE")
+        MODULE=$(basename "$MODULE_DIR")
 
         [[ "$VALUE" != "true" ]] && continue
 
-        cat > "$ROOT/$SERVICE.env" <<EOF
+        module_ready "$MODULE" || continue
+        module_has_env "$MODULE" || continue
+
+        cat > "$ROOT/$MODULE.env" <<EOF
 PROJECT_NAME=$PROJECT
-SERVICE_NAME=$SERVICE
+SERVICE_NAME=$MODULE
 TZ=America/Sao_Paulo
 EOF
 

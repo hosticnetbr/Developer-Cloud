@@ -2,13 +2,14 @@
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-source "$SCRIPT_DIR/lib.sh"
+source "$SCRIPT_DIR/metadata.sh"
 
 module_has_compose() {
 
     local MODULE="$1"
 
-    module_has "$MODULE" compose.yml || return 1
+    module_ready "$MODULE" || return
+    module_has_compose "$MODULE" || return
 
     grep -qE '^[[:space:]]*(image:|build:)' \
         "$(module_file "$MODULE" compose.yml)"

@@ -2,7 +2,7 @@
 
 ROOT="$HOME/Developer-Cloud"
 
-source "$ROOT/scripts/provision/env.sh"
+source "$HOME/Developer-Cloud/scripts/modules/metadata.sh"
 
 module_env() {
 

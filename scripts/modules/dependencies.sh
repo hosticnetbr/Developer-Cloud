@@ -2,13 +2,14 @@
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-source "$SCRIPT_DIR/lib.sh"
+source "$HOME/Developer-Cloud/scripts/modules/metadata.sh"
 
 module_dependencies() {
 
     local MODULE="$1"
 
-    module_has "$MODULE" dependencies.conf || return
+    module_ready "$MODULE" || return
+    module_has_dependencies "$MODULE" dependencies.conf || return
 
     grep -v '^#' \
         "$(module_file "$MODULE" dependencies.conf)" \
